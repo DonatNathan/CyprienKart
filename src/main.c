@@ -52,17 +52,17 @@ void game_loop(void)
             dprintf(1, "CAR_FORWARD:0.5\n");
             getline(&buffer, &mt, stdin);
         }
-        if (values->start < 500) {
-            dprintf(1, "WHEELS_DIR:-0.195\n");
+        if (values->start < values->last) {
+            dprintf(1, "WHEELS_DIR:-0.2\n");
             getline(&buffer, &mt, stdin);
         }
-        else if (values->last < 500) {
-            dprintf(1, "WHEELS_DIR:0.195\n");
+        else if (values->last < values->start) {
+            dprintf(1, "WHEELS_DIR:0.2\n");
             getline(&buffer, &mt, stdin);
         }
         else {
             dprintf(1, "WHEELS_DIR:0.0\n");
-            getline(&buffer, &mt, stdin); 
+            getline(&buffer, &mt, stdin);
         }
     }
     stop_car(buffer, mt);

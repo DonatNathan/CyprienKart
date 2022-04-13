@@ -21,24 +21,20 @@ LIB	=	lib/my_strlen.c      \
 
 SRC = 	src/*.c
 
-OBJ = $(LIB:.c=.o)
-
 NAME = ai
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@ar rc libmy.a $(OBJ)
+all:
 	@echo ">>> Librairy compiled."
-	@gcc -g3 -o ${NAME} $(SRC) -L. libmy.a
+	@gcc ${SRC} ${LIB} -o ${NAME} -g3 -L.
 	@echo ">>> Executable \"${NAME}\" created."
 
 clean:
-	@rm -f $(OBJ)
+	@rm -f *.o
 
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f libmy.a
 	@echo ">>> All files was clean."
 
-re: fclean all
+re:	fclean all
+
