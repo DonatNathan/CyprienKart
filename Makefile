@@ -6,6 +6,7 @@
 ##
 
 LIB	=	lib/my_strlen.c      \
+		lib/my_getnbr.c	\
 		lib/my_atoi.c	\
 		lib/my_putchar.c     \
 		lib/my_put_nbr.c     \
@@ -16,6 +17,7 @@ LIB	=	lib/my_strlen.c      \
 		lib/my_printf.c	\
 		lib/new_put_nbr.c	\
 		lib/str_to_array.c	\
+		lib/my_str_to_word_array.c
 
 SRC = 	src/*.c
 
