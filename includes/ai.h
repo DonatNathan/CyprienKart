@@ -16,4 +16,11 @@
     #include <unistd.h>
     #include <limits.h>
 
+    typedef struct values {
+        int start;
+        int middle;
+        int last;
+        int n;
+    } *values_t;
+
 #endif /* AI_H_ */

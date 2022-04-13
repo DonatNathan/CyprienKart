@@ -22,5 +22,6 @@ char *new_put_nbr(int nb);
 int puissance(int y);
 char **str_to_array(char *map, char stop);
 int my_strncmp(char const *s1, char const *s2, int nb);
+char **my_str_to_word_array(char *str, char *parsers);
 
 #endif /* MY_H_ */
