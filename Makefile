@@ -37,4 +37,3 @@ fclean: clean
 	@echo ">>> All files was clean."
 
 re:	fclean all
-

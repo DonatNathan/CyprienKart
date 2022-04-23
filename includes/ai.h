@@ -20,7 +20,13 @@
         int start;
         int middle;
         int last;
+        int speed;
+        int wheels;
         int n;
     } *values_t;
+
+void game_loop(void);
+void launch_car(char *buffer, ssize_t mt);
+void stop_car(char *buffer, ssize_t mt, values_t values);
 
 #endif /* AI_H_ */

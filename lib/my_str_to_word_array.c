@@ -16,7 +16,7 @@ int check_parsers(char c, char *parser)
 
     if (!parser)
         return (1);
-    for (;parser[i] != '\0'; i++)
+    for (; parser[i] != '\0'; i++)
         if (c == parser[i])
             return (0);
     return (1);
@@ -49,8 +49,8 @@ int get_ac(char *str, char *parsers)
     int i = 0;
     int y = 0;
 
-    for (;check_parsers(str[y], parsers) == 0 && str[y] != '\0'; y++);
-    for (;str[y] != '\0'; y++) {
+    for (; check_parsers(str[y], parsers) == 0 && str[y] != '\0'; y++);
+    for (; str[y] != '\0'; y++) {
         if (check_parsers(str[y], parsers) == 1 && str[y] != '\0' &&
         (check_parsers(str[y + 1], parsers) == 0 || str[y + 1] == '\0'))
             i += 1;
@@ -71,7 +71,7 @@ char **my_str_to_word_array(char *str, char *parsers)
     }
     if ((av = malloc(sizeof(char *) * (ac + 1))) == NULL)
         return (NULL);
-    for (;n < ac; n++)
+    for (; n < ac; n++)
         av[n] = get_av(str, &ptr, parsers);
     av[n] = NULL;
     return av;
