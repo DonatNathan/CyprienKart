@@ -7,15 +7,6 @@
 
 #include "../includes/ai.h"
 
-void check_values(char *buffer, values_t values, ssize_t mt)
-{
-    char **stats = my_str_to_word_array(buffer, ":");
-
-    values->start = atoi(stats[3]);
-    values->middle = atoi(stats[18]);
-    values->last = atoi(stats[34]);
-}
-
 void check_wheels(values_t values, char *buffer, ssize_t mt)
 {
     char **stats;
@@ -24,6 +15,19 @@ void check_wheels(values_t values, char *buffer, ssize_t mt)
     getline(&buffer, &mt, stdin);
     stats = my_str_to_word_array(buffer, ":");
     values->wheels = atoi(stats[3]);
+}
+
+void critical_turn(values_t values, char *buffer, ssize_t mt)
+{
+    if (values->start < 130 && values->start < values->last) {
+        dprintf(1, "WHEELS_DIR:-0.5\n");
+        getline(&buffer, &mt, stdin);
+    } else if (values->last < 130 && values->start > values->last) {
+        dprintf(1, "WHEELS_DIR:0.5\n");
+        getline(&buffer, &mt, stdin);
+    } else {
+        turn_wheels(values, buffer, mt);
+    }
 }
 
 void turn_wheels(values_t values, char *buffer, ssize_t mt)
@@ -44,7 +48,9 @@ void turn_wheels(values_t values, char *buffer, ssize_t mt)
 
 void change_speed(values_t values, char *buffer, ssize_t mt)
 {
-    if (values->middle > 700)
+    if (values->middle < 500)
+        dprintf(1, "CAR_FORWARD:0.1\n");
+    else if (values->middle > 700 && values->start > 130 && values->last > 130)
         dprintf(1, "CAR_FORWARD:0.5\n");
     else
         dprintf(1, "CAR_FORWARD:0.2\n");
@@ -63,11 +69,11 @@ void game_loop(void)
         dprintf(1, "GET_INFO_LIDAR\n");
         getline(&buffer, &mt, stdin);
         check_values(buffer, values, mt);
-        if (values->middle < 250 && values->start < 500 && values->last < 500) {
+        if (values->middle < 200 && values->start < 300 && values->last < 300)
             stop_car(buffer, mt, values);
-        } else {
+        else {
             change_speed(values, buffer, mt);
-            turn_wheels(values, buffer, mt);
+            critical_turn(values, buffer, mt);
         }
     }
 }

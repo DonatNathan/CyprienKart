@@ -28,5 +28,7 @@
 void game_loop(void);
 void launch_car(char *buffer, ssize_t mt);
 void stop_car(char *buffer, ssize_t mt, values_t values);
+void turn_wheels(values_t values, char *buffer, ssize_t mt);
+void check_values(char *buffer, values_t values, ssize_t mt);
 
 #endif /* AI_H_ */

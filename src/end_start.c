@@ -35,3 +35,12 @@ void stop_car(char *buffer, ssize_t mt, values_t values)
     dprintf(1, "STOP_SIMULATION\n");
     getline(&buffer, &mt, stdin);
 }
+
+void check_values(char *buffer, values_t values, ssize_t mt)
+{
+    char **stats = my_str_to_word_array(buffer, ":");
+
+    values->start = atoi(stats[3]);
+    values->middle = atoi(stats[18]);
+    values->last = atoi(stats[34]);
+}
