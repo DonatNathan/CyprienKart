@@ -63,10 +63,11 @@ void game_loop(void)
         dprintf(1, "GET_INFO_LIDAR\n");
         getline(&buffer, &mt, stdin);
         check_values(buffer, values, mt);
-        if (values->middle > 300) {
+        if (values->middle < 250 && values->start < 500 && values->last < 500) {
+            stop_car(buffer, mt, values);
+        } else {
             change_speed(values, buffer, mt);
             turn_wheels(values, buffer, mt);
-        } else
-            stop_car(buffer, mt, values);
+        }
     }
 }
