@@ -32,13 +32,13 @@ void critical_turn(values_t values, char *buffer, ssize_t mt)
 
 void turn_wheels(values_t values, char *buffer, ssize_t mt)
 {
-    if (values->start < 500 && values->middle < 700 && values->start <
+    if (values->start < 650 && values->middle < 800 && values->start <
     values->last) {
-        dprintf(1, "WHEELS_DIR:-0.25\n");
+        dprintf(1, "WHEELS_DIR:-0.3\n");
         getline(&buffer, &mt, stdin);
-    } else if (values->last < 500 && values->middle < 700 && values->start >
+    } else if (values->last < 650 && values->middle < 800 && values->start >
     values->last) {
-        dprintf(1, "WHEELS_DIR:0.25\n");
+        dprintf(1, "WHEELS_DIR:0.3\n");
         getline(&buffer, &mt, stdin);
     } else {
         dprintf(1, "WHEELS_DIR:0.0\n");
@@ -48,10 +48,10 @@ void turn_wheels(values_t values, char *buffer, ssize_t mt)
 
 void change_speed(values_t values, char *buffer, ssize_t mt)
 {
-    if (values->middle < 500)
+    if (values->middle < 650)
         dprintf(1, "CAR_FORWARD:0.1\n");
-    else if (values->middle > 700 && values->start > 130 && values->last > 130)
-        dprintf(1, "CAR_FORWARD:0.5\n");
+    else if (values->middle > 850 && values->start > 130 && values->last > 130)
+        dprintf(1, "CAR_FORWARD:0.4\n");
     else
         dprintf(1, "CAR_FORWARD:0.2\n");
     getline(&buffer, &mt, stdin);
